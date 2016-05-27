@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div>
+    <h1>The sigles game</h1>
+    <section>
+        <h2>Chicas</h2>
+        {% for s in girls %}
+            <article>
+                {{s.name}}
+                {{s.clicks}}
+            </article>
+        {% endfor %}
+    </section>
+    <section>
+        <h2>Chicos</h2>
+        {% for s in boys %}
+            <article>
+                {{s.name}}
+                {{s.clicks}}
+            </article>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        {{ parent() }}
+        
+        h1{ font-size:50px;}
+        h2{ font-size:25px;}
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <style>
+        {{ parent() }}
+        
+        h1{ font-size:50px;}
+        h2{ font-size:25px;}
+    </style>
+{% endblock %}
