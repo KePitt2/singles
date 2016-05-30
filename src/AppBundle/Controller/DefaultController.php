@@ -44,7 +44,7 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("single/{single}", name="default_single")
+     * @Route("/single/{single}", name="default_single")
      * @ParamConverter("single", class="AppBundle:Single")
      */
     public function singleAction(Request $request, Single $single)
@@ -52,5 +52,23 @@ class DefaultController extends Controller
         return $this->render('default/view.html.twig', [
             'single' => $single
         ]);
+    }
+    
+    /**
+     * @Route("/reset")
+     */
+    public function resetAction(Request $request)
+    {
+        if($request->get('reset')){
+            $singles = $this->getDoctrine()->getRepository('AppBundle:Single')->findAll();
+            
+            foreach($singles as $single){
+                $single->setClicks(0);
+            }
+            
+            $this->getDoctrine()->getManager()->flush();
+        }
+        
+        return $this->redirectToRoute('default_homepage');
     }
 }
