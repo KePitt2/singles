@@ -2,22 +2,38 @@
 
 {% block body %}
 <div>
-    <h1>The sigles game</h1>
-    <section>
+    <h1>
+        <img src="{{ asset('/uploads/sello.jpg') }}" alt="" width="120"/>
+        ¿Queréis conocer a l@s solter@s más escanead@s? :D
+    </h1>
+    <img src="{{ asset('/uploads/logo.jpg') }}" alt="" style="margin: 20px 20%;" id="logo"/>
+    <section class="chicas" style="opacity: 0">
         <h2>Chicas</h2>
-        {% for s in girls %}
-            <article>
-                {{s.name}}
-                {{s.clicks}}
+        {% for s in girls|reverse %}
+            <article id="single_{{ s.id }}">
+                <div>
+                    <img src="{{ asset('/uploads/singles/' ~ s.id ~ '.jpg') }}" alt="" style="opacity: 0"/>
+                </div>
+                <h3 style="opacity: 0">
+                    {{ s.name }}
+                    <em style="opacity: 0">({{ s.clicks }} visitas)</em>
+                </h3>
+                <strong>{{ loop.revindex }}</strong>
             </article>
         {% endfor %}
     </section>
-    <section>
+    <section class="chicos" style="opacity: 0">
         <h2>Chicos</h2>
-        {% for s in boys %}
-            <article>
-                {{s.name}}
-                {{s.clicks}}
+        {% for s in boys|reverse %}
+            <article id="single_{{ s.id }}">
+                <div>
+                    <img src="{{ asset('/uploads/singles/' ~ s.id ~ '.jpg') }}" alt="" style="opacity: 0"/>
+                </div>
+                <h3 style="opacity: 0">
+                    {{ s.name }}
+                    <em style="opacity: 0">({{ s.clicks }} visitas)</em>
+                </h3>
+                <strong>{{ loop.revindex }}</strong>
             </article>
         {% endfor %}
     </section>
@@ -27,17 +43,57 @@
 {% block stylesheets %}
     <style>
         {{ parent() }}
+
+        body{
+            padding: 20px 50px;
+        }
         
-        h1{ font-size:50px;}
-        h2{ font-size:25px;}
+        h1{ font-size:42px; padding-bottom: 8px; border-bottom: 2px solid #555;}
+        h1 img{ margin-bottom: -40px; margin-right: 20px; }
+        h2{ font-size:32px; text-align:center; clear: both;}
+        
+        section{
+            margin: 50px 0;
+        }
+        article{
+            width:30%;
+            padding: 10px 20px;
+            float: left;
+            text-align: center;
+        }
+
+        section > article > div{ height: 180px; }
+        section > article img{ height: 100%; border-radius: 50%; }
+        section > article h3{ font-size: 21px;}
+        
+        section > article strong{ font-size: 42px; display: block; color: #f8f8f8; background-color: #555;padding 4px 8px; margin-top: 10px; border-radius: 4px;}
+        section > article:last-child strong{ font-size: 50px; }
+        section > article em{ font-size: 12px; display: block;}
     </style>
 {% endblock %}
 
 {% block javascripts %}
-    <style>
-        {{ parent() }}
+    {{ parent() }}
+    <script src="{{ asset('/bundles/app/js/jquery-2.2.4.min.js')}}"></script>
+    
+    <script>
+        $(function(){
+            $('#logo').click(function(e){
+                $(this).hide('slow', function(){
+                    $('section').animate({opacity: 1}, 5000);
+                });
+            });
         
-        h1{ font-size:50px;}
-        h2{ font-size:25px;}
-    </style>
+            $('section').find('article').click(function(e){
+                var $this = $(this);
+                    
+                $this.find('em').animate({opacity: 1}, 2500, function(){
+                    $this.find('img').animate({opacity: 1}, 5000);
+                    $this.find('h3').animate({opacity: 1}, 5000, function(){
+                        $this.find('em').animate({opacity: 1}, 8000);
+                    });
+                });
+            });
+        });
+    </script>
 {% endblock %}

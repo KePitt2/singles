@@ -16,21 +16,20 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         if(!$request->get('ver')){
-            throw $this->createNotFoundException('Eres demasiado list@, pero yo más... Sigue tonteando y verás al negro del whatsapp detrás tuyo...');
+            throw $this->createNotFoundException('Eres demasiado list@, pero yo más... Sigue tonteando y el ...');
         }
         
         $em = $this->getDoctrine()->getRepository('AppBundle:Single');
-        $order = ['clicks' => 'desc'];
         
         return $this->render('default/index.html.twig', [
-            'girls' => $em->findBy(['gender' => false], $order),
-            'boys' => $em->findBy(['gender' => true], $order)
+            'girls' => $em->findBy(['gender' => false], ['clicks' => 'desc'], $request->get('limit', 3)),
+            'boys' => $em->findBy(['gender' => true], ['clicks' => 'desc'], $request->get('limit', 3))
         ]);
     }
     
     /**
      * @Route("/ver/{single}", name="default_view")
-     * @ParamConverter("single",class="AppBundle:Single")
+     * @ParamConverter("single", class="AppBundle:Single")
      */
     public function viewAction(Request $request, Single $single)
     {
@@ -46,11 +45,12 @@ class DefaultController extends Controller
     
     /**
      * @Route("single/{single}", name="default_single")
+     * @ParamConverter("single", class="AppBundle:Single")
      */
-    public function singleAction(Request $request, $single)
+    public function singleAction(Request $request, Single $single)
     {
         return $this->render('default/view.html.twig', [
-            'image' => $single
+            'single' => $single
         ]);
     }
 }
