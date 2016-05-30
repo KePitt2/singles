@@ -45,16 +45,9 @@ class Single
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="blob")
+     * @ORM\Column(name="description", type="text")
      */
-    private $photo;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="profile_photo", type="blob")
-     */
-    private $profilePhoto;
+    private $description;
     
     public function __toString()
     {
@@ -150,9 +143,9 @@ class Single
      *
      * @return Single
      */
-    public function setPhoto($photo)
+    public function setDescription($description)
     {
-        $this->photo = $photo;
+        $this->description = $description;
 
         return $this;
     }
@@ -162,33 +155,9 @@ class Single
      *
      * @return string
      */
-    public function getPhoto()
+    public function getDescription()
     {
-        return $this->photo;
-    }
-
-    /**
-     * Set profilePhoto
-     *
-     * @param string $profilePhoto
-     *
-     * @return Single
-     */
-    public function setProfilePhoto($profilePhoto)
-    {
-        $this->profilePhoto = $profilePhoto;
-
-        return $this;
-    }
-
-    /**
-     * Get profilePhoto
-     *
-     * @return string
-     */
-    public function getProfilePhoto()
-    {
-        return $this->profilePhoto;
+        return $this->description;
     }
 }
 
