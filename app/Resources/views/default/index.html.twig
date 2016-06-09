@@ -4,9 +4,9 @@
 <div>
     <h1>
         <img src="{{ asset('/uploads/sello.jpg') }}" alt="" width="120"/>
-        ¿Queréis conocer a l@s solter@s más escanead@s? :D
+        ¿Queréis conocer a l@s solter@s más escanead@s...?
     </h1>
-    <img src="{{ asset('/uploads/logo.jpg') }}" alt="" style="margin: 20px 20%;" id="logo"/>
+    <div style="text-align: center; margin-top: 20px;"><img src="{{ asset('/uploads/logo.jpg') }}" alt="" id="logo"/></div>
     <section class="chicas" style="opacity: 0">
         <h2>Chicas</h2>
         {% for s in girls|reverse %}
@@ -18,7 +18,7 @@
                     {{ s.name }}
                     <em style="opacity: 0">({{ s.clicks }} visitas)</em>
                 </h3>
-                <strong>{{ loop.revindex }}</strong>
+                <strong>{{ loop.revindex }}ª</strong>
             </article>
         {% endfor %}
     </section>
@@ -33,7 +33,7 @@
                     {{ s.name }}
                     <em style="opacity: 0">({{ s.clicks }} visitas)</em>
                 </h3>
-                <strong>{{ loop.revindex }}</strong>
+                <strong>{{ loop.revindex }}º</strong>
             </article>
         {% endfor %}
     </section>
@@ -48,7 +48,7 @@
             padding: 20px 50px;
         }
         
-        h1{ font-size:42px; padding-bottom: 8px; border-bottom: 2px solid #555;}
+        h1{ font-size:36px; padding-bottom: 8px; border-bottom: 2px solid #555;}
         h1 img{ margin-bottom: -40px; margin-right: 20px; }
         h2{ font-size:32px; text-align:center; clear: both;}
         
@@ -57,18 +57,18 @@
         }
         article{
             width:30%;
-            padding: 10px 20px;
+            padding: 10px 10px;
             float: left;
             text-align: center;
         }
 
-        section > article > div{ height: 180px; }
+        section > article > div{ height: 160px; }
         section > article img{ height: 100%; border-radius: 50%; }
         section > article h3{ font-size: 21px;}
         
-        section > article strong{ font-size: 42px; display: block; color: #f8f8f8; background-color: #555;padding 4px 8px; margin-top: 10px; border-radius: 4px;}
-        section > article:last-child strong{ font-size: 50px; }
-        section > article em{ font-size: 12px; display: block;}
+        section > article strong{ font-size: 42px; display: block; color: #f8f8f8; background-color: #555; padding 4px 8px; margin-top: 10px; border-radius: 4px;}
+        section > article.clicked strong { background-color: #900; }
+        section > article em{ font-size: 12px; display: block; padding: 2px 0;}
     </style>
 {% endblock %}
 
@@ -85,8 +85,8 @@
             });
         
             $('section').find('article').click(function(e){
-                var $this = $(this);
-                    
+                var $this = $(this).addClass('clicked');
+
                 $this.find('em').animate({opacity: 1}, 2500, function(){
                     $this.find('img').animate({opacity: 1}, 5000);
                     $this.find('h3').animate({opacity: 1}, 5000, function(){
