@@ -28,7 +28,7 @@ COMPOSER          = $(PHP_CLI) ${APP_BIN}/composer
 COMPOSER_OPTIONS ?= --no-suggest --ignore-platform-reqs --optimize-autoloader
 
 ENV_FILE          = dot.env
-TAG_NAME          = GUIA_VERSION
+TAG_NAME          = VERSION
 BRANCH_MASTER     = master
 
 CHAG_VERSION      = master
