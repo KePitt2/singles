@@ -1,0 +1,10 @@
+{% extends '@templates/base.html.twig' %}
+
+{% block body %}
+    <img src="{{ asset('/uploads/profiles/' ~ single.id ~ '.jpg') }}" alt="" />
+    <p>{{ single.description }}</p>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

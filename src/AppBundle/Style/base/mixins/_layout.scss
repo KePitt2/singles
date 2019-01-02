@@ -1,0 +1,51 @@
+// Templating
+
+/// margin/padding helper
+@mixin space(
+  $type,
+  $vertical: null,
+  $horizontal: null
+) {
+  @if ($vertical != null and $horizontal != null) {
+    #{unquote($type)}: if($vertical == $horizontal, $vertical, $vertical $horizontal);
+  } @else if ($vertical != null) {
+    #{unquote($type)}-top: $vertical;
+    #{unquote($type)}-bottom: $vertical;
+  } @else if ($horizontal != null) {
+    #{unquote($type)}-right: $horizontal;
+    #{unquote($type)}-left: $horizontal;
+  }
+}
+
+/// vertical space between items (components, items,...)
+/// @param {Number} $space - space with previous component
+@mixin top-space($space: $component-space) {
+  margin-top: $space;
+
+  &:first-child {
+    margin-top: 0;
+
+    @content;
+  }
+}
+
+/// Make templating with spaces
+/// @param {Number} $top-space - space with previous component
+/// @param {Number} $first-space - space between title and content component
+@mixin make-component($top-space: $component-space, $first-space: $title-space) {
+  @include top-space($top-space);
+
+  @if ($first-space != null) {
+    > * {
+      &:first-child {
+        margin-bottom: $first-space;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  } // todo: avoid magic selectors
+
+  @content;
+}

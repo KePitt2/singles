@@ -1,0 +1,911 @@
+// Global
+$ENVIRONMENT: 'prod' !default; // prod/dev
+$THEME: null !default; // theme name
+$AUTOPREFIXER: true !default; // render vendor prefixes for non-standard rules
+
+// Routes
+$base-dir: '../' !default;
+$images-dir: $base-dir + 'img/' !default;
+$font-dir: $base-dir + 'fonts/' !default;
+
+// Colors
+  // Base colors
+$transparent: rgba(255, 255, 255, 0) !default; // Use variable instead of scalar value like "transparent" or "rgba"
+$gray: (#333, #505050, #666, #7b7b7b, #999, #aeaeae, #c2c2c2, #d7d7d7, #ebebeb, #f5f5f5) !default; // grayscale
+  // Theme colors
+$main-color: #1e22aa !default;
+$cta-color: #e00f1d !default;
+  // State colors
+$success-color: #69bb33 !default;
+$warning-color: rgb(240, 203, 39) !default;
+$danger-color: #e00f1d !default;
+  // Social colors
+$social-facebook: #295A9C !default;
+$social-google: #0083F9 !default;
+$social-googleplus: #d34836 !default;
+$social-twitter: #00c3f3 !default;
+$social-linkedin: #0077B5 !default;
+$social-instagram: #262626 !default;
+$social-pinterest: #cb212a !default;
+$social-whatsapp: #34af23 !default;
+$social-messenger: #0084ff !default;
+$social-skype: #00aff0 !default;
+  // Scaffolding colors
+$body-color: #fff !default; // Main background-color //todo: rename as $default-background-color
+$inverted-background-color: nth($gray, 1) !default; // Darkness grayscale base
+$section-color: nth($gray, 10) !default; // Special section and page background: hotel, prefooter,...
+$default-text-color: nth($gray, 3) !default; // Main foreground color
+$default-title-color: nth($gray, 1) !default; // Main title color
+$secondary-text-color: nth($gray, 5) !default; // Special foreground color
+$inverted-text-color: #fff !default; // Foreground color on inverted section
+$default-border-color: nth($gray, 8) !default; // Default common border/lines color
+$contrast-dark-color: nth($gray, 2) !default; // Contrast color for text and backgrounds (SPA) //todo: rename
+
+// Typography
+$default-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$default-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+$default-font-size: 14px !default; // Base for body
+$default-line-height-base: 1.428571429 !default;
+
+$default-text-size-mobile: 1rem !default; // => 14px
+$default-text-size: 1rem !default; // => 14px
+$default-text-weight: normal !default;
+$default-text-style: normal !default;
+$default-text-case: none !default;
+
+$secondary-text-size-mobile: 0.85rem !default; // => 12px
+$secondary-text-size: 0.85rem !default; // => 12px
+$secondary-text-weight: normal !default;
+$secondary-text-style: normal !default;
+$secondary-text-case: none !default;
+
+$featured-text-size-mobile: 1.28571428571rem !default; // => 18px
+$featured-text-size: 1.28571428571rem !default; // => 18px
+$featured-text-weight: normal !default;
+$featured-text-style: normal !default;
+$featured-text-case: none !default;
+
+$main-title-size-mobile: 1.85714rem !default; // => 26px
+$main-title-size: 2rem !default; // => 28px
+$main-title-weight: bold !default;
+$main-title-style: normal !default;
+$main-title-case: none !default;
+
+$primary-title-size-mobile: 1.57143rem !default; // => 22px
+$primary-title-size: 1.57143rem !default; // => 22px
+$primary-title-weight: bold !default;
+$primary-title-style: normal !default;
+$primary-title-case: none !default;
+
+$secondary-title-size-mobile: 1.28571428571rem !default; // => 18px
+$secondary-title-size: 1.28571428571rem !default; // => 18px
+$secondary-title-weight: bold !default;
+$secondary-title-style: normal !default;
+$secondary-title-case: none !default;
+
+$section-title-size-mobile: 0.85rem !default; // => 12px
+$section-title-size: 0.85rem !default; // => 12px
+$section-title-weight: bold !default;
+$section-title-style: normal !default;
+$section-title-case: uppercase !default;
+
+// Scaffolding
+$grid-system: null !default; //null (floats) // @todo: 'flexbox' and 'gridcss' system
+$grid-columns: 12 !default; // grid columns
+$grid-prefix: 'col-' !default; // grid columns
+
+$grid-space: 30px !default; // horizontal separation for base template/layout
+$container-space: 30px !default; // horizontal separation for base container
+$template-space: $grid-space !default; // vertical separation for base template/layout
+$component-space: 30px !default; // Space for sections/components
+$component-space-small: 1.05rem !default; // Small space for components (SR) //@todo: unify space for all projects
+$component-space-tiny: .5em !default; // Tiny space for components (SR) //@todo: unify space for all projects
+$title-space: 15px !default; // vertical separation (title components)
+$list-space: 5px !default; // vertical separation (list item components)
+
+$breakpoints: (
+  'xxs': 320px,
+  'xs': 480px,
+  'sm': 576px,
+  'md': 768px, // => tablet (smaller: phone)
+  'lg': 992px, // => desktop
+  'xl': 1024px,
+  'xxl': 1200px // => tv
+) !default; // media breakpoints
+
+$media: (
+  'xxs': (null, 'xs'),
+  'xs+': ('xs', null),
+  'xs-': (null, 'sm'),
+  'xs': ('xs', 'sm'),
+  'sm+': ('sm', null),
+  'sm-': (null, 'md'),
+  'sm': ('sm', 'md'),
+  'md+': ('md', null),
+  'md-': (null, 'lg'),
+  'md': ('md', 'lg'),
+  'lg+': ('lg', null),
+  'lg-': (null, 'xl'),
+  'lg': ('lg', 'xl'),
+  'xl+': ('xl', null),
+  'xl-': (null, 'xxl'),
+  'xl': ('xl', 'xxl'),
+  'xxl': ('xxl', null),
+  'phone': (null, 'md'), // @deprecated: in the future, use 'xs-' instead
+  'tablet': ('md', null), // @deprecated: in the future, use 'sm+' instead
+  'upto-tablet': (null, 'lg'), // @deprecated: in the future, use 'sm-' instead
+  'only-tablet': ('md', 'lg'), // @deprecated: in the future, use 'sm' instead
+  'desktop': ('lg', null), // @deprecated: in the future, use 'lg+' instead
+  'upto-desktop': (null, 'xxl'), // @deprecated: in the future, use 'lg+' instead
+  'only-desktop': ('lg', 'xxl'), // @deprecated: in the future, use 'lg' instead
+  'tv': ('xxl', null) // @deprecated: in the future, use 'xxl'
+) !default; // media queries
+
+$container: (
+  'tablet': 750px, // @deprecated: in the future, use 'md+' instead
+  'desktop': 970px, // @deprecated: in the future, use 'lg+' instead
+  'tv': 1170px // @deprecated: in the future, use 'xxl' instead
+) !default; // container widths
+
+$body-wrapper-container: false !default; // render full solid design/liquid on wrapper
+
+$zindex-dropdown:       1000 !default;
+$zindex-sticky:         1020 !default;
+$zindex-fixed:          1030 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal:          1050 !default;
+$zindex-popover:        1060 !default;
+$zindex-tooltip:        1070 !default;
+
+// Icons
+$icon-font-folder: 'common/iconos-cdrcom/cdr' !default;
+$icon-font-family: 'cdr' !default;
+$icon-class: 'icon' !default;
+
+$icon-text-space: 4px !default;
+$icons: (
+  'favorito-vacio': '\e800',
+  'estrella': '\e801',
+  'home': '\e802',
+  'favorito': '\e803',
+  'fotos': '\e804',
+  'ok': '\e805',
+  'aspa': '\e806',
+  'cancelar': '\e807',
+  'ok2': '\e808',
+  'mas': '\e809',
+  'menos': '\e80a',
+  'dudas': '\e80b',
+  'info': '\e80c',
+  'inicio': '\e80d',
+  'link': '\e80e',
+  'oferta': '\e80f',
+  'bien': '\e810',
+  'mal': '\e811',
+  'comentario': '\e812',
+  'chat2': '\e813',
+  'aviso': '\e814',
+  'aviso2': '\e815',
+  'mapa': '\e816',
+  'telefono': '\e817',
+  'ajustes': '\e818',
+  'calendario': '\e819',
+  'reloj': '\e81a',
+  'abajo': '\e81b',
+  'izquierda': '\e81c',
+  'derecha': '\e81d',
+  'arriba': '\e81e',
+  'off': '\e81f',
+  'regalo': '\e820',
+  'tarjetas': '\e821',
+  'servicios': '\e822',
+  'lapiz': '\e823',
+  'users': '\e824',
+  'invitar-amigo': '\e825',
+  'aire-acondicionado': '\e826',
+  'calefaccion': '\e827',
+  'zona-infantil': '\e828',
+  'golf': '\e829',
+  'mascotas': '\e82a',
+  'cama': '\e82b',
+  'prohibido': '\e82c',
+  'editar': '\e82d',
+  'buscar': '\e82e',
+  'nueva-ventana': '\e82f',
+  'empresa': '\e830',
+  'internet': '\e831',
+  'download': '\e832',
+  'switch': '\e833',
+  'cine': '\e835',
+  'esqui': '\e836',
+  'compras': '\e837',
+  'piscina': '\e838',
+  'actividades': '\e839',
+  'actividades-1': '\e844',
+  'costa': '\e845',
+  'nieve': '\e846',
+  'lgtb': '\e83a',
+  'arte': '\e83b',
+  'libros': '\e83c',
+  'cientifico': '\e83d',
+  'avion': '\e83e',
+  'naturaleza': '\e83f',
+  'mundo': '\e840',
+  'superski': '\e873',
+  '3ad': '\e885',
+  '4ad-1': '\e886',
+  '1ad1ni': '\e887',
+  '1ad2ni': '\e888',
+  '2ad': '\e88a',
+  '2ad1ni': '\e88b',
+  '2ad2ni': '\e88c',
+  '1ad-01-01': '\e893',
+  'mapa-1': '\e898',
+  'dinners-club': '\e899',
+  'llegar': '\e89a',
+  'bebe': '\e89b',
+  'adulto': '\e841',
+  'nino': '\e842',
+  'volver-reservar': '\e89c',
+  'anular-reserva': '\e89d',
+  'descargar-passbook': '\e89e',
+  'enviar-factura': '\e89f',
+  'enviar-reserva': '\e8a0',
+  'modificar-reserva': '\e8a1',
+  'ver-factura': '\e8a2',
+  'ver-reserva': '\e8a3',
+  'idioma': '\e8a4',
+  'cultural': '\e8a5',
+  'cine2': '\e8a6',
+  'magicos': '\e8a7',
+  'noseve': '\e8a8',
+  'gastronomico': '\e8a9',
+  'playa': '\e8aa',
+  '10euros': '\e8ac',
+  'unete': '\e8ad',
+  'disney': '\e8ae',
+  'filtro': '\e96f',
+  'wellness': '\e9f9',
+  'cheque-regalo': '\ea30',
+  'busquedas-recientes-mini': '\ea31',
+  'cerdo-hucha': '\ea32',
+  'limpieza': '\ea33',
+  'servicio': '\ea34',
+  'reservas': '\ea35',
+  'ubicacion-resumen': '\ea36',
+  'television': '\ea37',
+  'fumadores': '\ea38',
+  'no-fumadores': '\ea39',
+  'parking': '\ea3a',
+  'gimnasio': '\ea3b',
+  'animacion': '\ea3c',
+  'no-reembolsable': '\ea3d',
+  'flexipack': '\ea3e',
+  'multiservicio': '\ea3f',
+  '24horas': '\ea40',
+  'factura': '\ea44',
+  'moneda': '\ea46',
+  'cerrar-sesion': '\f02d',
+  'usuario': '\f062',
+  'usuaria': '\f063',
+  'twitter': '\f099',
+  'oferta2': '\f0a3',
+  'google': '\e848',
+  'gplus': '\f0d5',
+  'mail': '\f0e0',
+  'comentario-vacio': '\f0e5',
+  'chat': '\f0e6',
+  'maleta': '\f0f2',
+  'cafe': '\f0f4',
+  'restaurante': '\f0f5',
+  'hotel': '\f0f7',
+  'doble-angulo-izq': '\f100',
+  'doble-angulo-der': '\f101',
+  'angulo-izq': '\f104',
+  'angulo-der': '\f105',
+  'angulo-arriba': '\f106',
+  'angulo-abajo': '\f107',
+  'feliz': '\f118',
+  'triste': '\f119',
+  'regular': '\f11a',
+  'geoloc': '\f140',
+  'youtube': '\f166',
+  'skype': '\f17e',
+  'minusvalidos': '\f193',
+  'hotel2': '\f1ad',
+  'coche': '\f1b9',
+  'share': '\f1e0',
+  'wifi': '\f1eb',
+  'visa': '\f1f0',
+  'mastercard': '\f1f1',
+  'discover': '\f1f2',
+  'amex': '\f1f3',
+  'paypal': '\f1f4',
+  'descartar': '\f1f8',
+  'bus': '\f207',
+  'barco': '\f21a',
+  'whatsapp': '\f232',
+  'cercanias': '\f238',
+  'tren': '\f239',
+  'pdi': '\f276',
+  'comentar': '\f27a',
+  'descuento': '\f295',
+  'facebook': '\f308',
+  'messenger': '\e849',
+  'linkedin': '\f30c',
+  'instagram': '\f32d',
+  'night': '\e84a',
+  'anadir': '\e84b',
+  'shield': '\e8af',
+  'spin': '\e834',
+  'ordenar': '\e960',
+) !default;
+
+// Links
+$link-default-color: $main-color !default;
+$link-default-underline: false !default;
+$link-default-hover-color: darken($main-color, 15%) !default;
+$link-default-hover-underline: true !default;
+
+$link-secondary-color: $default-text-color !default;
+$link-secondary-underline: true !default;
+$link-secondary-hover-color: $main-color !default;
+$link-secondary-hover-underline: true !default;
+
+$link-navigation-color: $default-text-color !default;
+$link-navigation-underline: false !default;
+$link-navigation-hover-color: $main-color !default;
+$link-navigation-hover-underline: true !default;
+
+$link-active-opacity: 0.85 !default;
+$link-focus-opacity: 0.9 !default;
+$link-transition: all .2s ease-in-out !default;
+
+// Buttons
+$button-weight: bold !default;
+$button-style: normal !default;
+$button-decoration: none !default;
+$button-transform: none !default;
+$button-border-width: 1px !default;
+$button-border-style: solid !default;
+$button-border-radius: 4px !default;
+$button-active-shadow: inset 0 3px 5px rgba(0, 0, 0, .125) !default;
+
+$padding-base-vertical:  9px !default;
+$padding-base-horizontal: 12px !default;
+$padding-large-vertical: 11px !default;
+$padding-large-horizontal: 16px !default;
+$padding-small-vertical: 5px !default;
+$padding-small-horizontal: 9px !default;
+
+$button-themes: (
+  default: (
+    color: $default-text-color,
+    background: $body-color,
+    border: $button-border-width $button-border-style nth($gray, 5),
+    hover-color: nth($gray, 1),
+    hover-background-color: $body-color,
+    hover-border: $button-border-width $button-border-style nth($gray, 1)
+  ),
+  cta: (
+    color: $body-color,
+    background: $cta-color,
+    border: $button-border-width $button-border-style $cta-color,
+    hover-color: $body-color,
+    hover-background-color: red, //avoid hardcoded pseudostate color
+    hover-border: $button-border-width $button-border-style red
+  ),
+  info: (
+    color: $body-color,
+    background: $main-color,
+    border: $button-border-width $button-border-style $main-color,
+    hover-color: $body-color,
+    hover-background-color: #2e33dc,
+    hover-border: $button-border-width $button-border-style #2e33dc
+  )
+) !default;
+
+$button-sizes: (
+  sm: ( space: 5px, size: $secondary-text-size ),
+  lg: ( space: 11px, size: $featured-text-size )
+) !default;
+
+// Forms
+$form-fieldset-vertical-space: 0 !default;
+$form-field-vertical-space: 10px !default;
+$form-field-inline-label-space: 4px !default;
+
+$input-space-vertical: 10px !default;
+$input-space-horizontal: 12px !default;
+$form-input-size: $default-text-size !default;
+
+$form-input-color: $default-text-color !default;
+$form-input-background-color: $body-color !default;
+$form-input-border-size: 1px !default;
+$form-input-border-color: $default-border-color !default;
+$form-input-border: $form-input-border-size solid $form-input-border-color !default;
+$form-input-radius: 0 !default;
+$form-input-transition: $link-transition !default;
+
+$form-input-focus-color: $default-text-color !default;
+$form-input-focus-background-color: #fff !default;
+$form-input-focus-border-color: darken($form-input-border-color, 15%) !default;
+
+$form-input-hover-color: $default-text-color !default;
+$form-input-hover-background-color: #fff !default;
+$form-input-hover-border-color: darken($form-input-border-color, 5%) !default;
+
+$form-placeholder-color: lighten($default-text-color, 25%) !default;
+$form-placeholder-focus-opacity: 0.5 !default;
+
+$form-input-icon-color: $form-placeholder-color !default;
+$form-input-active-icon-color: $form-input-focus-border-color !default;
+$form-select-icon-color: $form-placeholder-color !default;
+$form-select-active-icon-color: $form-input-focus-border-color !default;
+$form-input-icon-width: 1200 !default;
+$form-input-icon-height: 600 !default;
+$form-select-icon-width: 1200 !default;
+$form-select-icon-height: 600 !default;
+
+$form-check-scale: 0 !default;
+$form-datetime-color: $form-placeholder-color !default;
+
+$form-label-size: inherit !default;
+$form-label-color: inherit !default;
+$form-label-weight: normal !default;
+$form-label-style: normal !default;
+$form-label-case: none !default;
+
+// Messages
+$message-space: $title-space !default;
+$message-themes: (
+  success: (
+    color: #69BB33,
+    background: lighten($success-color, 50%),
+    icon: 'ok'
+  ),
+  warning: (
+    color: #DE9B00,
+    background: #FFF5C0,
+    icon: 'aviso'
+  ),
+  error: (
+    color: $danger-color,
+    background: lighten($danger-color, 50%),
+    icon: 'aspa'
+  ),
+) !default;
+
+// Tables
+$table-cell-padding: .75rem !default;
+
+// Panels
+$panel-space: $component-space !default;
+$panel-background: null !default;
+$panel-border: 0 0 5px $default-border-color !default;
+
+// Header
+$header-height: 80px !default;
+$header-height-mobile: 50px !default;
+
+$header-background: $body-color !default;
+$header-shadow: 0 1px 10px 0 rgba(0 ,0, 0, .5) !default;
+
+$header-icon-color: nth($gray, 5) !default;
+$header-icon-size: 20px !default;
+$header-icon-hover-color: darken($header-icon-color, 15%) !default;
+
+$header-item-padding-vertical: floor(($header-height - $header-icon-size) / 2) !default;
+$header-item-padding-horizontal: 9px !default;
+
+$header-link-size: 1.15rem !default; // => 16px
+$header-link-color: $default-text-color !default;
+$header-link-hover-color: lighten($header-link-color, 15%) !default;
+
+$header-panel-padding: 1rem !default;
+$header-panel-border-color: nth($gray, 7) !default;
+$header-panel-background-color: $body-color !default;
+
+$header-nav-responsive-open-width: 85 !default;
+$header-nav-responsive-open-time: 0.25s !default;
+
+$header-main-nav-text-color: #fff !default;
+$header-main-nav-background-color: $default-border-color !default;
+
+$header-user-nav-text-color: #fff !default;
+$header-user-nav-background-color: $main-color !default;
+
+$header-main-trigger-width: 30px !default;
+$header-main-trigger-height: 4px !default;
+$header-main-trigger-color: $main-color !default;
+
+$header-user-trigger-image-size: 32px !default;
+$header-user-trigger-responsive-image-size: 30px !default;
+$header-user-trigger-border-width: 1px !default;
+$header-user-trigger-responsive-border-width: 2px !default;
+$header-user-trigger-color: $main-color !default;
+
+$header-user-form-background-image: 'layout/header/join-us-form-palmeras.jpg' !default;
+
+// Footer
+$footer-background-color: $contrast-dark-color !default;
+$copyright-background-color: $cta-color !default;
+$footer-address-image-height: 40px !default;
+
+$footer-title-color: $default-border-color !default;
+$footer-link-color: nth($gray, 5) !default;
+
+// Fixed footers
+$footer-shadow: 0 -1px 10px 0 rgba(0 ,0, 0, .5) !default;
+
+// Breadcrumbs
+$breadcrumbs-margin: 0 !default;
+$breadcrumbs-border: 0 !default;
+$breadcrumbs-padding: 10px 0 !default;
+
+$breadcrumbs-item-vertical-space: 0 !default;
+$breadcrumbs-item-horizontal-space: 0 !default;
+$breadcrumbs-item-padding: ($breadcrumbs-item-vertical-space) ($breadcrumbs-item-horizontal-space) !default;
+
+$breadcrumbs-text-size: $secondary-text-size !default;
+$breadcrumbs-text-color: $default-text-color !default;
+
+$breadcrumbs-item-size: $section-title-size !default;
+$breadcrumbs-item-weight: $section-title-weight !default;
+$breadcrumbs-item-case: none !default;
+
+$breadcrumbs-link-color: $secondary-text-color !default;
+$breadcrumbs-link-underline: false !default;
+$breadcrumbs-link-hover-color: $default-text-color !default;
+$breadcrumbs-link-hover-underline: true !default;
+
+$breadcrumbs-active-color: $default-text-color !default;
+$breadcrumbs-active-decoration: none !default;
+
+$breadcrumbs-separator: '\00BB' !default;
+$breadcrumbs-separator-padding: 0 3px !default;
+$breadcrumbs-separator-size: $breadcrumbs-text-size !default;
+$breadcrumbs-separator-color: $default-text-color !default;
+
+$breadcrumbs-collapse: '...' !default;
+
+// Top-navigation
+$top-nav-height: ($header-height / 2) !default;
+$top-nav-background: $section-color !default;
+$top-nav-shadow: inset 0 6px 6px -5px $secondary-text-color !default;
+$top-nav-space-base: 6px !default;
+
+$top-nav-space: $top-nav-space-base ($grid-space / 2) !default;
+
+$top-nav-item-space: $top-nav-space-base 1em !default;
+$top-nav-item-size: $breadcrumbs-text-size !default;
+$top-nav-item-border: 1px solid $default-border-color !default;
+$top-nav-item-weight: normal !default;
+$top-nav-item-case: uppercase !default;
+
+$top-nav-item-color: $secondary-text-color !default;
+$top-nav-item-hover-color: $default-text-color !default;
+
+$top-nav-trigger-height: 3px !default;
+$top-nav-trigger-width: 20px !default;
+$secondary-trigger-height: ($top-nav-trigger-height * 5) !default; // trigger bars (3) + trigger bar separations (2)
+
+// Pagination
+$pagination-side: right !default;
+$pagination-margin: 0 !default;
+$pagination-padding: 0 !default;
+$pagination-radius: 4px !default;
+
+$pagination-link-space: 5px 10px !default;
+$pagination-link-size: $default-text-size !default;
+
+$pagination-link-color: $cta-color !default;
+$pagination-link-background-color: $transparent !default;
+$pagination-link-weight: bold !default;
+$pagination-link-decoration: none !default;
+$pagination-link-border: 1px solid $default-border-color !default;
+
+$pagination-link-hover-color: $default-border-color !default;
+$pagination-link-hover-background-color: $transparent !default;
+$pagination-link-hover-weight: bold !default;
+$pagination-link-hover-decoration: none !default;
+$pagination-link-hover-border-color: $default-border-color !default;
+
+$pagination-link-active-color: $default-text-color !default;
+$pagination-link-active-background-color: $transparent !default;
+$pagination-link-active-weight: bold !default;
+$pagination-link-active-decoration: none !default;
+$pagination-link-active-border-color: $default-border-color !default;
+
+// Tabs
+$tabs-base-space: 4px !default;
+$tabs-navigation-top-space: $title-space !default;
+$tabs-navigation-space: ($tabs-base-space) 0 ($tabs-base-space) !default;
+$tabs-navigation-type: '%section-title' !default;
+$tabs-navigation-color: $default-text-color !default;
+$tabs-navigation-border: 2px solid nth($gray, 7) !default;
+$tabs-navigation-active-color: $default-text-color !default;
+$tabs-navigation-active-border-color: $cta-color !default;
+$tabs-navigation-transition: all 1s ease !default;
+
+$tabs-navigation-font-size: $section-title-size !default;
+$tabs-navigation-weight: $section-title-weight !default;
+$tabs-navigation-case: $section-title-case !default;
+
+// Dropdown
+$dropdown-item-space: $input-space-vertical 10px !default;
+
+$dropdown-icon-right: 5px !default;
+$dropdown-icon-transition: transform 0.5s ease !default;
+
+$dropdown-limit: 200px !default;
+$dropdown-content-transition: opacity 0.2s ease-in !default;
+
+// Carousel/Gallery
+$carousel-nav-width: 50px !default;
+$carousel-nav-size: $secondary-title-size !default;
+
+$carousel-nav-opacity: 0.7 !default;
+$carousel-nav-hover-opacity: 0.9 !default;
+$carousel-nav-shadow: none !default;
+
+$carousel-nav-color: #fff !default;
+$carousel-nav-background-color: lighten($default-text-color, 20%) !default;
+$carousel-nav-hover-color: $carousel-nav-color !default;
+$carousel-nav-hover-background-color: $default-text-color !default;
+
+$carousel-nav-inverted-color: #fff !default;
+$carousel-nav-inverted-background-color: $transparent !default;
+$carousel-nav-inverted-hover-color: $carousel-nav-inverted-color !default;
+$carousel-nav-inverted-hover-background-color: $transparent !default;
+
+$carousel-img-height: 300px !default;
+$carousel-img-separator: 8px !default;
+
+// Popup/Modal
+$modal-space-mobile: ($component-space / 2) !default;
+$modal-space: ($modal-space-mobile * 2) !default;
+$modal-margin: 3em !default;
+$modal-alt-bg: rgba(240,240,240, .7);
+
+$popup-background: $inverted-background-color !default;
+$popup-opacity: 0.8 !default;
+$popup-transition: opacity 0.2s ease-in-out !default;
+
+$popup-inverse-background: #fff !default;
+$popup-inverse-border: 0 !default;
+$popup-inverse-shadow: 0 0 20px $default-border-color !default;
+
+$popup-button-icon-color: #fff !default;
+$popup-button-color: lighten($default-text-color, 20%) !default;
+$popup-button-hover-color: $default-text-color !default;
+$popup-button-shadow: none !default;
+
+$popup-close-size: ($main-title-size * 2) !default;
+$popup-close-color: $popup-button-color !default;
+$popup-close-hover-color: $popup-button-hover-color !default;
+$popup-close-shadow: $popup-button-shadow !default;
+
+$popup-nav-size: $secondary-title-size !default;
+$popup-nav-color: $popup-button-color !default;
+$popup-nav-hover-color: $popup-button-hover-color !default;
+$popup-nav-shadow: $popup-button-shadow !default;
+
+/// Tooltip
+$tooltip-background: $body-color !default;
+$tooltip-border: 0 0 20px $default-border-color !default;
+$tooltip-radius: 4px !default;
+$tooltip-space: .5em !default;
+$tooltip-transition: opacity 0.3s ease-in-out !default;
+
+// Cover
+$cover-image-height-mobile: 150px !default;
+$cover-image-height: 300px !default;
+$cover-image-height-full: 400px !default;
+
+$cover-shadow: inset 0 6px 6px -5px $secondary-text-color !default;
+$cover-default-background: $default-text-color !default;
+$cover-image-load-transition: all 0.1s ease-in !default;
+
+$header-box-background: rgba($contrast-dark-color, 0.64) !default;
+
+// Entity list
+$entity-card-space: 0.5em !default;
+
+$entity-card-background: rgba(0, 0, 0, 0.3) !default;
+$entity-card-overlay: $transparent 0%, $transparent 70%, $entity-card-background 100% !default;
+$entity-card-shadow: 0 1px 6px $default-title-color !default;
+
+$entity-card-hover-time: 0.2s !default;
+
+$entity-banner-min-height: 115px !default;
+$entity-banner-overlay: $entity-card-background 0%, $transparent 30%, $transparent 100% !default;
+
+// Category
+$category-tag: 'i' !default;
+$category-color: #f0cb27 !default;
+$key-category-color: nth($gray, 1) !default;
+
+// Benefits list
+$ventajas-icon-color: $cta-color !default;
+$ventajas-icon-border: 4px solid $cta-color !default;
+$ventajas-separator-border: 1px dotted $default-border-color !default;
+
+// Step list
+$steps-size: 70px !default;
+$steps-font-size: 3.4rem !default;
+$steps-font-weight: normal !default;
+$steps-font-style: normal !default;
+$steps-color: $default-text-color !default;
+$steps-position: (
+  vertical: 2%,
+  horizontal: 2%,
+  size: 98%
+) !default;
+
+// Comments Filter
+$comments-filter-title-border-color: $section-color !default;
+$comments-filter-item-hover: $main-color !default;
+
+// Comments & Recomendations
+$recomendacion-height: 215px !default;
+
+$recomendacion-avatar-size: 50px !default;
+$recomendacion-border: 1px solid $default-border-color !default;
+$recomendacion-text-color: $default-text-color !default;
+$recomendacion-location-color: $default-text-color !default;
+$recomendacion-details-color: $secondary-text-color !default;
+$recomendacion-background-color: #fff !default;
+
+$recomendacion-ranking-color: $success-color !default;
+$recomendacion-ranking-size: $featured-text-size !default;
+$recomendacion-ranking-weight: bold !default;
+
+// Weather cells
+$weather-data-weight: bold !default;
+
+// Social
+$social-enable-colors: false;
+$social-item-horizontal-space: 14px !default;
+$social-item-size: $primary-title-size !default;
+$social-icon-color: nth($gray, 5) !default;
+$social-icon-hover-color: darken($social-icon-color, 15%) !default;
+
+// Like
+$like-size: 30px !default;
+$like-color: $cta-color !default;
+$like-hover-color: $cta-color !default;
+
+// Map
+$map-color: $link-default-color !default;
+$map-hover-color: $link-default-hover-color !default;
+$map-marker-color: #1e22aa !default;
+
+// Top trigger
+$top-link-icon: 'arriba' !default;
+$top-link-size: 1rem !default;
+$top-link-space: 10px 14px 14px !default;
+$top-link-radius: 50% !default;
+$top-link-position-bottom: $grid-space !default;
+$top-link-position-right: $grid-space !default;
+$top-link-transition: opacity 0.2s ease-in !default;
+
+$top-link-color: #fff !default;
+$top-link-background-color: rgba($contrast-dark-color, .5) !default;
+$top-link-border: none !default;
+$top-link-hover-color: #fff !default;
+$top-link-hover-background-color: rgba($contrast-dark-color, .85) !default;
+$top-link-hover-border: none !default;
+
+// Prices
+$price-color: #e00f1d !default; // Price color
+
+$price-base-size: inherit !default;
+$price-base-color: inherit !default;
+$price-cents-size: 80% !default;
+
+// User panel
+$user-higlight-color: $main-color !default;
+$user-name-color: $inverted-text-color !default;
+$user-name-size: $main-title-size !default;
+
+$user-avatar-size-mobile: 95px !default;
+$user-avatar-size-desktop: 140px !default;
+
+$user-border: 2px solid #fff !default;
+$user-background: rgba(0, 0, 0, 0.5) !default;
+$user-shortcut-background: $section-color !default;
+
+// Reviews
+$reviews-block-height: 70px !default;
+$reviews-list-height: $default-text-color !default;
+
+// Inspire
+$inspire-dropdown-color-lines: $default-border-color !default;
+
+// People
+$people-img-height-mobile: 50vh !default;
+$people-img-height-tablet: 175px !default;
+$people-img-height-desktop: 200px !default;
+
+// Search box
+$search-box-imgs-base-url: '../../img/caja-busqueda/' !default; //@todo: unify! this route works for cdrcom project
+//$search-box-text-colour: $default-text-color !default;
+$search-box-lineal-font-size-base: 1.1rem !default;
+$search-box-text-colour: #666 !default;
+$search-box-input-colour: $form-input-color !default;
+$search-box-text-size: inherit !default;
+$search-box-bg-colour: white !default;
+$search-box-border-width: 1px !default;
+$search-box-border-colour: #dcdcdc !default;
+$search-box-space: 5px !default;
+
+$search-box-bg-modal-colour: $search-box-bg-colour !default;
+$search-box-bg-modal-maxsize: 360px !default;
+$search-box-close-modal-colour: #bbb !default;
+$search-box-modal-visible-max-size: 991px !default;
+$search-box-modal-launcher-button-color: $cta-color !default;
+
+$search-box-label-colour: #1e22aa !default;
+$search-box-placeholder-colour: #bbb !default;
+$search-box-border-radius: 4px !default;
+
+$search-box-bg-rooms-colour: $search-box-bg-colour !default;
+$search-box-border-rooms-colour: $search-box-border-colour !default;
+$search-box-rooms-padding: 10px !default;
+$search-box-room-title-colour: #545558 !default;
+$search-box-bg-room-item-colour: #f2f2f2 !default;
+
+$search-box-border-filter-colour: $search-box-border-colour !default;
+$search-box-bg-filter-button-colour: $search-box-border-filter-colour !default;
+$search-box-bg-filter-colour: $search-box-bg-colour !default;
+$search-box-text-filter-button-colour: $search-box-bg-filter-colour !default;
+$search-box-bg-filter-colour-hover: #DDD !default;
+$search-box-filter-title-colour: #508CCC !default;
+$search-box-filter-separator-colour: #F70000 !default;
+$search-box-filter-label-colour: #78797B !default;
+$search-box-filter-checkbox-label-colour: $search-box-filter-label-colour !default;
+$search-box-width-filter-button: 3.9em !default;
+
+$search-box-night-count-colour: #ff7800 !default;
+
+$search-box-basiclayout-label-colour: #1e22aa !default;
+$search-box-basiclayout-room-distrib-bg-colour: #dcf2ff !default;
+$search-box-basiclayout-border-colour: #66b6ff !default;
+$search-box-basiclayout-input-border-colour: #66b6ff !default;
+$search-box-basiclayout-title-text-colour: $inverted-text-color !default;
+
+$search-box-boxlayout-label-colour: #666 !default;
+$search-box-boxlayout-room-distrib-bg-colour: #dcf2ff !default;
+$search-box-boxlayout-border-colour: #66b6ff !default;
+$search-box-boxlayout-input-border-colour: #66b6ff !default;
+
+// Search box: autocomplete
+$cdr-autocomplete-shadow-colour: $search-box-border-colour !default;
+$cdr-autocomplete-topborder-colour: $search-box-border-colour !default;
+$cdr-autocomplete-border-radius: $search-box-border-radius !default;
+$cdr-autocomplete-padding: 2px !default;
+$cdr-autocomplete-bg-colour: $search-box-bg-colour !default;
+$cdr-autocomplete-zebra-colour: #F2F2F2 !default;
+$cdr-autocomplete-text-colour: gray !default;
+$cdr-autocomplete-remark-colour: #EF3 !default;
+$cdr-autocomplete-desc-text-colour: $cdr-autocomplete-text-colour !default;
+$cdr-autocomplete-hover-text-colour: #f70000 !default;
+$cdr-autocomplete-hover-bg-colour: $cdr-autocomplete-zebra-colour !default;
+$cdr-autocomplete-base-font-size: .9rem !default;
+
+// Search box: datepicker
+$cdr-datepicker-bg-colour: $search-box-bg-colour !default;
+$cdr-datepicker-shadow-colour: $search-box-border-colour !default;
+$cdr-datepicker-hover-border-colour: #aaa !default;
+$cdr-datepicker-hover-text-colour: #212121 !default;
+$cdr-datepicker-active-border-colour: #f70000 !default;
+$cdr-datepicker-active-text-colour: $cdr-datepicker-active-border-colour !default;
+$cdr-datepicker-inside-range-bg-colour: #F2F2F2 !default;
+$cdr-datepicker-inside-range-text-colour: $cdr-datepicker-active-border-colour !default;
+
+// SPA Search box: datepicker
+$spa-datepicker-inside-range-bg-colour: #F2F2F2 !default;
+$spa-datepicker-hover-text-colour: #212121 !default;
+
+// Misc: special rules (todo: more than one variables related to one component should be in an isolated section):

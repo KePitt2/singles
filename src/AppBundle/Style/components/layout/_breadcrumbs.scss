@@ -1,0 +1,30 @@
+// Breadcrumbs + social sharing layout
+
+.breadcrumbs-nav {
+  @extend %template-row;
+  @include space(padding, 0);
+
+  .breadcrumbs {
+    @include make-col(10, 8, 9);
+  }
+
+  .sharing {
+    @include make-col(2, 4, 3);
+  }
+
+  &.breadcrumbs-shadow {
+    box-shadow: $cover-shadow;
+  }
+
+  @include mq('tablet') {
+    &.breadcrumbs-shadow-tablet {
+      box-shadow: $cover-shadow;
+    }
+  }
+
+  @include mq('desktop') {
+    &.breadcrumbs-shadow-desktop {
+      box-shadow: $cover-shadow;
+    }
+  }
+}

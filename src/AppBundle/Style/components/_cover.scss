@@ -1,0 +1,81 @@
+// Cover
+
+// Alturas:
+// .cover (default): 0 (mobile), 300px (desktop)
+// .cover-mobile: 150px (mobile), 300px (desktop)
+// .cover-full: 300px (mobile/desktop)
+
+.cover {
+  position: relative;
+  width: 100%;
+}
+
+.cover-image {
+  width: 100%;
+  height: 0;
+  opacity: 0;
+
+  background-color: $cover-default-background;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  transition: $cover-image-load-transition;
+
+  &.in {
+    opacity: 1;
+    box-shadow: $cover-shadow;
+  }
+
+  @include mq('upto-tablet') {
+    .cover-mobile & {
+      height: $cover-image-height-mobile;
+    }
+
+    .cover-full & {
+      height: $cover-image-height-full;
+    }
+  }
+
+  @include mq('desktop') {
+    height: $cover-image-height;
+
+    .cover-full & {
+      height: $cover-image-height-full;
+    }
+  }
+}
+
+.cover-header {
+  margin: 0;
+  padding: $template-space 0;
+
+  &--title {
+    @include make-typo('main-title');
+  }
+
+  &--subtitle {
+    @include make-typo('default-title');
+  }
+
+  @include mq('tablet') {
+    @include center('vertical');
+    width: 25%;
+  }
+
+  @include mq('desktop') {
+    width: 40%;
+
+    &--title {
+      @include make-typo(44px);
+    }
+
+    &--subtitle {
+      @include make-typo($primary-title-size);
+    }
+  }
+
+  @include mq('tv') {
+    width: 30%;
+  }
+}

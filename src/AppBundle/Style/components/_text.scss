@@ -1,0 +1,87 @@
+// Generic text content
+
+%text-space {
+  @include top-space($title-space);
+}
+
+.text {
+  @include make-component;
+
+  &,
+  > div:not([class]) {
+    > * {
+      @extend %text-space;
+    }
+  } // hx, p, ul, ol, table, img,... (inside root or <div>)
+
+  h1:not([class]) {
+    @include make-typo('main-title');
+  }
+
+  h2:not([class]) {
+    @include make-typo('primary-title');
+  }
+
+  h3:not([class]) {
+    @include make-typo('secondary-title');
+  }
+
+  h4,
+  h5,
+  h6 {
+    &:not([class]) {
+      @include make-typo('section-title');
+    }
+  }
+
+  p,
+  li,
+  table {
+    a:not([class]) {
+      @extend .link;
+    }
+  }
+
+  > ul,
+  > ol {
+    &:not([class]) {
+      @extend .list;
+    }
+  }
+
+  table {
+    @extend .plain !optional;
+    border-collapse: inherit;
+  }
+
+  img {
+    @include img-responsive;
+  }
+
+  > img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &-article {
+    > * {
+      padding-top: ($component-space / 2);
+      border-top: 1px solid $default-border-color;
+
+      &:first-child {
+        padding-top: 0;
+        border-top: 0;
+      }
+    }
+  }
+
+  // Text utils
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}

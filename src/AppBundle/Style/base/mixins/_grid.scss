@@ -1,0 +1,295 @@
+/// Grid helpers
+
+@mixin clearfix() {
+  &:after {
+    display: block;
+    clear: both;
+    content: '';
+  }
+}
+
+@mixin row() {
+  @if ($grid-system == 'flexbox') {
+    @include flex-box;
+    @include flex('wrap', wrap);
+  } @else if ($grid-system == 'grid') {
+    @include grid-row(0, 1); //todo: fix grid css system
+  } @else {
+    @include clearfix;
+  }
+}
+
+/// Create specific css rules
+@mixin col($size, $columns: $grid-columns) {
+  @if ($grid-system == 'flexbox') {
+    @include flex-col(0, 0, percentage($size / $columns));
+    max-width: percentage($size / $columns);
+  } @else if ($grid-system == 'grid') {
+    @include grid-col($size / $columns); //todo: fix grid css system
+  } @else {
+    float: left;
+    width: percentage($size / $columns);
+  }
+}
+
+@mixin order($size, $columns: $grid-columns) {
+  @if ($grid-system == 'flexbox') {
+    @include flex-order($size);
+  } @else if ($grid-system == 'grid') {
+    //todo: grid css system
+  } @else {
+    #{if($size < 0, 'right', 'left')}: percentage(abs($size) / $columns);
+  }
+}
+
+@mixin offset($size, $columns: $grid-columns) {
+  margin-#{if($size < 0, 'right', 'left')}: percentage(abs($size) / $columns);
+}
+
+/// Creates a grid container
+@mixin make-container(
+  $containers: $container,
+  $gutter: $container-space
+) {
+  @include clearfix;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  @if ($gutter != null) {
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @each $mq, $width in $containers {
+    @include mq($mq) {
+      max-width: $width;
+    }
+  }
+}
+
+/// Creates a grid row
+@mixin make-row($gutter: $grid-space) {
+  @include row;
+
+  @if ($gutter != null) {
+    margin-right: ceil($gutter / -2);
+    margin-left: floor($gutter / -2);
+  }
+}
+
+/// Creates a column
+@mixin make-col($xs: $grid-columns, $sm: null, $md: null, $lg: null, $gutter: $grid-space) {
+  $has-value: false;
+
+  position: relative;
+  min-height: 1px;
+
+  @if ($gutter != null) {
+    padding-right: ($gutter / 2);
+    padding-left: ($gutter / 2);
+  }
+
+  @if ($xs != null) {
+    $has-value: true;
+
+    @include col($xs);
+  }
+
+  @if ($sm != null and $sm != $xs) {
+    $has-value: true;
+
+    @include mq('tablet') {
+      @include col($sm);
+    }
+  }
+
+  @if ($md != null and $md != $sm) {
+    $has-value: true;
+
+    @include mq('desktop') {
+      @include col($md);
+    }
+  }
+
+  @if ($lg != null and $lg != $md) {
+    $has-value: true;
+
+    @include mq('tv') {
+      @include col($lg);
+    }
+  }
+
+  @if (not $has-value) {
+    width: 100%;
+  }
+}
+
+/// Orders (pulling/pushing, depending on values) a column
+@mixin order-col($xs: null, $sm: null, $md: null, $lg: null) {
+  @if ($xs != null ) {
+    @include order($xs);
+  }
+
+  @if ($sm != null and $sm != $xs) {
+    @include mq('tablet') {
+      @include order($sm);
+    }
+  }
+
+  @if ($md != null and $md != $sm) {
+    @include mq('desktop') {
+      @include order($md);
+    }
+  }
+
+  @if ($lg != null and $lg != $md) {
+    @include mq('tv') {
+      @include order($lg);
+    }
+  }
+}
+
+/// Moves (margin) a column
+@mixin offset-col($xs: null, $sm: null, $md: null, $lg: null) {
+  @if ($xs != null) {
+    @include offset($xs);
+  }
+
+  @if ($sm != null and $sm != $xs) {
+    @include mq('tablet') {
+      @include offset($sm);
+    }
+  }
+
+  @if ($md != null and $md != $sm) {
+    @include mq('desktop') {
+      @include offset($md);
+    }
+  }
+
+  @if ($lg != null and $lg != $md) {
+    @include mq('tv') {
+      @include offset($lg);
+    }
+  }
+}
+
+/// Creates complete grids
+@mixin make-child-xs-cols($colsxs, $gutter: 0) {
+  > * {
+    padding-left: ($gutter / 2);
+    padding-right: ($gutter / 2);
+    width: (floor((100% / $colsxs) * 100) / 100);
+    float: left;
+  }
+}
+
+@mixin make-child-sm-cols($colssm, $gutter: 0) {
+  @include mq('tablet') {
+    > * {
+      padding-left: ($gutter / 2);
+      padding-right: ($gutter / 2);
+      width: (floor((100% / $colssm) * 100) / 100);
+      float: left;
+    }
+  }
+}
+
+@mixin make-child-md-cols($colsmd, $gutter: 0) {
+  @include mq('desktop') {
+    > * {
+      padding-left: ($gutter / 2);
+      padding-right: ($gutter / 2);
+      width: (floor((100% / $colsmd) * 100) / 100);
+      float: left;
+    }
+  }
+}
+
+@mixin make-child-lg-cols($colslg, $gutter: 0) {
+  @include mq('tv') {
+    > * {
+      padding-left: ($gutter / 2);
+      padding-right: ($gutter / 2);
+      width: (floor((100%/$colslg) * 100) / 100);
+      float: left;
+    }
+  }
+}
+
+@mixin make-child-cols($colsxs: null, $colssm: null, $colsmd: null, $colslg: null, $gutter: 0) {
+  overflow: hidden;
+
+  @if ($colsxs != null) {
+    @include make-child-xs-cols($colsxs, $gutter);
+  }
+
+  @if ($colssm != null and $colssm != $colsxs) {
+    @include make-child-sm-cols($colssm, $gutter);
+  }
+
+  @if ($colsmd != null and $colsmd != $colssm) {
+    @include make-child-md-cols($colsmd, $gutter);
+  }
+
+  @if ($colslg != null and $colslg != $colsmd) {
+    @include make-child-lg-cols($colslg, $gutter);
+  }
+}
+
+// Grid generator
+
+@mixin make-grid($gutter: $grid-space) {
+  $index: 0;
+  $list: ".#{$grid-prefix}#{$index}, .#{$grid-prefix}sm-#{$index}, .#{$grid-prefix}md-#{$index}, .#{$grid-prefix}lg-#{$index}";
+
+  @for $index from 1 through $grid-columns {
+    $list: "#{$list}, .#{$grid-prefix}#{$index}, .#{$grid-prefix}sm-#{$index}, .#{$grid-prefix}md-#{$index}, .#{$grid-prefix}lg-#{$index}";
+  }
+
+  #{$list} {
+    position: relative;
+    min-height: 1px;
+
+    @if ($gutter != null) {
+      padding-left: ceil(($gutter / 2));
+      padding-right: floor(($gutter / 2));
+    }
+  }
+
+  @each $mq, $size in ('none': null, 'tablet': 'sm', 'desktop': 'md', 'tv': 'lg') {
+    @include mq($mq) {
+      $index: 0;
+      $list: ".#{$grid-prefix}#{unquote(if($size, "#{$size}-", ''))}#{$index}";
+
+      @for $index from 0 through $grid-columns {
+        $class: $grid-prefix + unquote(if($size, "#{$size}-", ''));
+
+        @if ($index > 0) {
+          $list: "#{$list} , .#{$class}#{$index}";
+        }
+
+        .#{$class}#{$index} {
+          width: if($index > 0, percentage(($index / $grid-columns)), 0);
+        }
+
+        .#{$class}pull-#{$index} {
+          right: if($index > 0, percentage(($index / $grid-columns)), auto);
+        }
+
+        .#{$class}push-#{$index} {
+          left: if($index > 0, percentage(($index / $grid-columns)), auto);
+        }
+
+        .#{$class}offset-#{$index} {
+          margin-left: if($index > 0, percentage(($index / $grid-columns)), 0);
+        }
+      }
+
+      #{$list} {
+        float: left;
+      }
+    }
+  }
+} // Create grid classes
