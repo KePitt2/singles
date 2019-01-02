@@ -1,4 +1,19 @@
-.idea
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+config.codekit3
+.idea/
+nbproject
+.vs/
+*.log
+*.pid
+*.swp
+phpunit.xml
+/composer.phar
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -35,15 +50,8 @@
 # Assets managed by Bower
 /web/assets/vendor/
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
-
 # Build data
 /build/
-
-# Composer PHAR
-/composer.phar
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~

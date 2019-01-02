@@ -33,7 +33,7 @@ class DefaultController extends Controller
      */
     public function viewAction(Request $request, Single $single)
     {
-        $add = $single->getClicks() + $request->get('add',1);
+        $add = $single->getClicks() + $request->get('add', 1);
         $single->setClicks($add);
         
         $this->getDoctrine()->getManager()->flush();
