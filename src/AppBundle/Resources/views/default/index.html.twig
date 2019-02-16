@@ -1,6 +1,7 @@
 {% extends '@templates/base.html.twig' %}
 
 {% block stylesheets %}
+    <link href="/assets/elisayfran2019.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two" rel="stylesheet">
 
     <style>
@@ -11,34 +12,33 @@
 {% endblock %}
 
 {% block javascripts %}
-
+    <script src="/assets/elisayfran2019.js"></script>
 {% endblock %}
 
 {% block body %}
-    <header class="cover">
+    <header class="cover cover-full">
         <div class="cover-image"
              data-script="cover"
-             data-image=""></div>
+             data-image="/assets/cover.jpg|/assets/cover.jpg"></div>
 
-        <div class="cover-claim">
-            <h1>
+        <div class="cover-header">
+            <h1 class="text-center">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda iste iure placeat vel. Aliquam aperiam minima natus rerum sit vel
             </h1>
         </div>
     </header>
 
     <nav>
-        Logo
-        Nav
+
     </nav>
 
-    <main class="one-column">
+    <section class="one-column">
         <div>
             <h2>Horario</h2>
             <p>La boda será en la iglesia del balneario a las 17:30h del día 6 de Julio de 2019.</p>
             <p>Por favor, intentar estar a las 17:15h.</p>
         </div>
-    </main>
+    </section>
 
     <section class="one-column">
         <div>
@@ -123,5 +123,11 @@
         </div>
     </footer>
 
-    {component 'top-link'}{/component}
+    <a href="#"
+       class="top-link"
+       data-script="top">
+        <span class="sr-only">
+            &uarr;
+        </span>
+    </a>
 {% endblock %}
