@@ -6,7 +6,7 @@ use Symfony\Component\Debug\Debug;
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#checking-symfony-application-configuration-and-setup
 // for more information
-//umask(0000);
+umask(0000);
 
 $remote = isset($_GET['remote-address'])
     ? ['127.0.0.1', 'fe80::1', '::1', $_GET['remote-address']]
