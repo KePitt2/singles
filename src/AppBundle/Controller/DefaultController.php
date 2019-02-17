@@ -29,7 +29,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getRepository('AppBundle:Single');
 
-        return $this->render('default/singles.html.twig', [
+        return $this->render('@templates/default/singles.html.twig', [
             'girls' => $em->findBy(['gender' => false], ['clicks' => 'desc'], $request->get('limit', 3)),
             'boys' => $em->findBy(['gender' => true], ['clicks' => 'desc'], $request->get('limit', 3))
         ]);
@@ -56,7 +56,7 @@ class DefaultController extends Controller
      */
     public function viewAction(Request $request, Single $single)
     {
-        return $this->render('default/view.html.twig', [
+        return $this->render('@templates/default/view.html.twig', [
             'single' => $single
         ]);
     }
