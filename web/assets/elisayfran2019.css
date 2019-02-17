@@ -6833,7 +6833,8 @@ main {
 
 .cover {
   position: relative;
-  width: 100%
+  width: 100%;
+  box-shadow: 0 4px 10px #aaa;
 }
 
 .cover-image {
@@ -6851,7 +6852,6 @@ main {
   -o-transition: all 0.1s ease-in;
   -moz-transition: all 0.1s ease-in;
   transition: all 0.1s ease-in;
-  box-shadow: 0 4px 10px #aaa;
 }
 
 .cover-image.in {
