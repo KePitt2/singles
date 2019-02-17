@@ -10,7 +10,7 @@ use Symfony\Component\Debug\Debug;
 
 $remote = isset($_GET['remote-address'])
     ? ['127.0.0.1', 'fe80::1', '::1', $_GET['remote-address']]
-    : ['127.0.0.1', 'fe80::1', '::1']; var_dump($remote);
+    : ['127.0.0.1', 'fe80::1', '::1'];
 
 // This check prevents access to debug front controllers that are deployed by accident to production servers.
 // Feel free to remove this, extend it, or make something more sophisticated.
