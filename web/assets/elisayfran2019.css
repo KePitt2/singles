@@ -6856,7 +6856,6 @@ main {
 .cover-image.in {
   height: 100vh;
   opacity: 1;
-  margin-top: -10rem;
   -webkit-box-shadow: inset 0 6px 6px -5px #999;
   -moz-box-shadow: inset 0 6px 6px -5px #999;
   box-shadow: inset 0 6px 6px -5px #999
