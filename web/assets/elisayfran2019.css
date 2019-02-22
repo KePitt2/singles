@@ -6970,7 +6970,13 @@ main {
 }
 
 .logo img {
-  width: 33%;
+  width: 40%;
+}
+
+@media (min-width: 480px) {
+  .logo img {
+    width: 50%;
+  }
 }
 
 @media (orientation: landscape) {
