@@ -6884,11 +6884,10 @@ main {
 }
 
 .cover-header--title {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
-.cover-header--title,
-h2, h3 {
+.cover-header--title {
   font-family: 'selima', cursive;
 }
 
