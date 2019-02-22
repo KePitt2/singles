@@ -6973,9 +6973,9 @@ main {
   width: 50%;
 }
 
-@media (max-width: 480px) and (orientation: portrait){
+@media (max-width: 479px) and (orientation: portrait) {
   .logo img {
-    width: 33%;
+    width: 100px;
   }
 }
 
