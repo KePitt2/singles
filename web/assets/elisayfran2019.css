@@ -6969,7 +6969,13 @@ main {
 }
 
 .logo img {
-  width: 330px;
+  width: 50%;
+}
+
+@media (min-width: 42em) {
+  .logo img {
+    width: 330px;
+  }
 }
 
 .contact-image {
