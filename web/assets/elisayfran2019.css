@@ -6973,7 +6973,7 @@ main {
   width: 50%;
 }
 
-@media (max-width: 479px) and (orientation: portrait) {
+@media (max-width: 479px) and (orientation: landscape) {
   .logo img {
     width: 100px;
   }
