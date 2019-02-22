@@ -3949,7 +3949,7 @@ img.mfp-img {
 }
 
 body, h1, h2, h3, h4, h5, h6, pre, code, kbd, samp, .default-one, .default-two, .default-positive, .default-inverted {
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: normal;
   font-style: normal;
   text-transform: none
@@ -6884,7 +6884,12 @@ main {
 }
 
 .cover-header--title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+}
+
+.cover-header--title,
+h2, h3 {
+  font-family: 'selima', cursive;
 }
 
 @media (min-width: 62em) {
@@ -6956,11 +6961,6 @@ main {
 
 .section {
   box-shadow: 0 4px 10px #eee;
-}
-
-.cover,
-h2, h3 {
-  font-family: 'selima', cursive;
 }
 
 .logo {
