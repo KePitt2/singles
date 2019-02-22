@@ -6973,6 +6973,12 @@ main {
   width: 33%;
 }
 
+@media (orientation: landscape) {
+  .logo img {
+    width: 50%;
+  }
+}
+
 @media (min-width: 42em) {
   .logo img {
     width: 330px;
