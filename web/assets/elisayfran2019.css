@@ -6963,6 +6963,16 @@ h2, h3 {
   font-family: 'selima', cursive;
 }
 
+.logo {
+  position: absolute;
+  top: 0;
+  text-align: center;
+}
+
+.logo img {
+  width: 200px;
+}
+
 .contact-image {
   position: relative;
   overflow: hidden;
