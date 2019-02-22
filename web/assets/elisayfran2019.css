@@ -4261,7 +4261,7 @@ small, .secondary-one, .secondary-two, .secondary-positive, .secondary-inverted,
   font-family: "selima";
   font-style: normal;
   font-weight: normal;
-  src: url("../fonts/selima/selima.otf") format("otf")
+  src: url("../fonts/selima/selima.otf") format("opentype")
 }
 
 .icon-after:before, [class^="icon-after-"]:before, [class*=" icon-after-"]:before {
