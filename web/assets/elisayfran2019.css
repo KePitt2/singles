@@ -6883,11 +6883,8 @@ main {
 }
 
 .cover-header--title {
-  font-size: 2rem;
-}
-
-.cover-header--title {
   font-family: 'selima', cursive;
+  font-weight: normal;
 }
 
 @media (min-width: 62em) {
@@ -6903,6 +6900,10 @@ main {
 @media (min-width: 75em) {
   .cover-header {
     width: 50%
+  }
+
+  .cover-header--title {
+    font-size: 2rem;
   }
 }
 
