@@ -6965,23 +6965,18 @@ main {
 .logo {
   position: absolute;
   top: 0;
+  height: 50vh;
   width: 100%;
   text-align: center;
 }
 
 .logo img {
-  width: 50%;
-}
-
-@media (max-width: 479px) and (orientation: landscape) {
-  .logo img {
-    width: 100px;
-  }
+ height: 100%;
 }
 
 @media (min-width: 42em) {
-  .logo img {
-    width: 330px;
+  .logo {
+    height: 30vh;
   }
 }
 
